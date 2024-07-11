@@ -10,6 +10,7 @@ RUN apt-get update && apt-get upgrade -y
 # # install the required packages
 RUN apt-get install -y mariadb-server vim zsh wget git mycli
 
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 # copy file from host to container
 COPY ./conf/mdb_conf.sh /mdb_conf.sh
 
