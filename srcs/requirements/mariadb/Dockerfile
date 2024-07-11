@@ -18,3 +18,10 @@ RUN chmod +x /mdb_conf.sh
 
 # define entrypoint command to run when the container starts
 ENTRYPOINT ["./mdb_conf.sh"]
+
+
+# sudo exec -it 'containername' (to enter running container)
+# look for files execute cmds like ls, cat
+
+# if in maria container then type: "mariadb -u root -p"
+# then check "SHOW DATABASES;"
