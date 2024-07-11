@@ -14,14 +14,10 @@ RUN mkdir -p /etc/nginx/ssl
 
 # generate the ssl certificate
 RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout \
-    /etc/nginx/ssl/inception.key -subj "/C=NL/ST=NH/L=AMS/O=42/OU=CODAM/CN=psadeghi.42.fr/UID=ParisSadeghi"
+    /etc/nginx/ssl/inception.key -subj "/C=NL/ST=NH/L=AMS/O=42/OU=CODAM/CN=psadeghi.42.fr/UID=psadeghi"
 
 # copy the nginx configuration file
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-
-COPY tools/auto.sh /auto.sh
-
-RUN chmod +x /auto.sh
 
 # create the wordpress directory
 RUN mkdir -p /var/www/wordpress
@@ -29,6 +25,6 @@ RUN mkdir -p /var/www/wordpress
 # change the owner of the wordpress directory to www-data
 RUN chown -R www-data:www-data /var/www/wordpress
 
-ENTRYPOINT [ "./auto.sh" ]
 # define the command to run when the container starts
 CMD ["nginx", "-g", "daemon off;"]
+
