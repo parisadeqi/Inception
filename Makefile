@@ -1,19 +1,15 @@
-# WP_DATA = ./data/wordpress #define the path to the wordpress data
-# DB_DATA = ./data/mariadb #define the path to the mariadb data
-# WP_DATA = /home/psadeghi/data/wordpress
-# DB_DATA = /home/psadeghi/data/mariadb
-WP_DATA = /Users/parisasadeqi/data/wordpress
-DB_DATA = /Users/parisasadeqi/data/mariadb
+WP_DATA = /home/psadeghi/data/wordpress
+DB_DATA = /home/psadeghi/data/mariadb
+# WP_DATA = /Users/parisasadeqi/data/wordpress
+# DB_DATA = /Users/parisasadeqi/data/mariadb
+
 # default target
 all: up
 
 # start the biulding process
 # create the wordpress and mariadb data directories.
 # start the containers in the background and leaves them running
-# @mkdir -p $(WP_DATA)
-# @mkdir -p $(DB_DATA)
-# sudo @chown -R $(whoami):$(whoami) /home/parisasadeqi/data
-# sudo @chmod -R 755 /home/parisasadeqi/data
+
 up: build
 	@mkdir -p $(WP_DATA)
 	@mkdir -p $(DB_DATA)
