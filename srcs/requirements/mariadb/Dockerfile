@@ -8,9 +8,10 @@ FROM debian:bullseye
 RUN apt-get update && apt-get upgrade -y
 
 # # install the required packages
-RUN apt-get install -y mariadb-server vim zsh wget git mycli
+RUN apt-get install -y mariadb-server nano
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
+RUN chmod 644 /etc/mysql/mariadb.conf.d/50-server.cnf
 # copy file from host to container
 COPY ./conf/mdb_conf.sh /mdb_conf.sh
 
@@ -20,6 +21,7 @@ RUN chmod +x /mdb_conf.sh
 # define entrypoint command to run when the container starts
 ENTRYPOINT ["./mdb_conf.sh"]
 
+EXPOSE 3306
 
 # sudo exec -it 'containername' (to enter running container)
 # look for files execute cmds like ls, cat
