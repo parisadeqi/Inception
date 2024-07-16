@@ -14,10 +14,10 @@ RUN mkdir -p /etc/nginx/ssl
 
 # generate the ssl certificate
 RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout \
-    /etc/nginx/ssl/inception.key -subj "/C=NL/ST=NH/L=AMS/O=42/OU=CODAM/CN=psadeghi.42.fr/UID=psadeghi"
+    /etc/nginx/ssl/inception.key -subj "/C=NL/ST=NH/L=AMS/O=42/OU=CODAM/CN=psadeghi.42.fr/UID=ParisSadeghi"
 
 # copy the nginx configuration file
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 # create the wordpress directory
 RUN mkdir -p /var/www/wordpress

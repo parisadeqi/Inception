@@ -7,6 +7,8 @@ FROM debian:bullseye
 RUN apt-get update && apt-get install -y
 # install the required packages
 RUN apt-get install -y \
+                wget \
+                bash \
                 curl \
                 php \
                 php7.4-fpm \
@@ -14,9 +16,9 @@ RUN apt-get install -y \
                 mariadb-client \
                 netcat
 
-COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
+#COPY ./tools/www.conf /etc/php/7.4/fpm/pool.d
 # copy the wordpress configuration script to the root directory in the container
-COPY /conf/wp_conf.sh /
+COPY ./conf/wp_conf.sh /
 
 # change the permission of the script to make it executable
 RUN  chmod +x wp_conf.sh
