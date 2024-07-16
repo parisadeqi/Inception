@@ -23,6 +23,8 @@ COPY ./conf/wp_conf.sh /
 # change the permission of the script to make it executable
 RUN  chmod +x wp_conf.sh
 
+VOLUME ["/var/www/wordpress"]
+
 # define the entrypoint command to run when the container starts
 ENTRYPOINT ["./wp_conf.sh"]
 

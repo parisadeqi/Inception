@@ -22,6 +22,8 @@ RUN chmod +x /mdb_conf.sh
 # define entrypoint command to run when the container starts
 ENTRYPOINT ["./mdb_conf.sh"]
 
+VOLUME ["/var/lib/mysql"]
+
 EXPOSE 3306
 
 # sudo exec -it 'containername' (to enter running container)

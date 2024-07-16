@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 #---------------------------------------------------wp installation---------------------------------------------------#
 # wp-cli (wordpress command line interface) installation
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -19,15 +21,17 @@ chown -R www-data:www-data /var/www/wordpress
 # following commands work because of command line interface installation
 cd /var/www/wordpress
 
+echo "[+] Installing WordPress"
 # download wordpress core files
 wp core download --allow-root
 # create wp-config.php file with database details
 wp core config --path="/var/www/wordpress" --dbhost=mariadb:3306 --dbname="$MYSQL_DB" --dbuser="$MYSQL_USER" --dbpass="$MYSQL_PASSWORD" --allow-root
+wp config set WP_HOME "https://$DOMAIN_NAME" --allow-root
+wp config set WP_SITEURL "https://$DOMAIN_NAME" --allow-root
 # install wordpress with the given title, admin username, password and email
 wp core install --path="/var/www/wordpress" --url="$DOMAIN_NAME" --title="$WP_TITLE" --admin_user="$WP_ADMIN_N" --admin_password="$WP_ADMIN_P" --admin_email="$WP_ADMIN_E" --allow-root
 #create a new user with the given username, email, password and role
 wp user create "$WP_U_NAME" "$WP_U_EMAIL" --user_pass="$WP_U_PASS" --role="$WP_U_ROLE" --allow-root
-
 #---------------------------------------------------php config---------------------------------------------------#
 
 # change listen port from unix socket to 9000

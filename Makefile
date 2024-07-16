@@ -1,17 +1,18 @@
-WP_DATA = /home/psadeghi/data/wordpress
-DB_DATA = /home/psadeghi/data/mariadb
+BASE_DIR = /home/psadeghi
+WP_DATA = $(BASE_DIR)/data/wordpress
+DB_DATA = $(BASE_DIR)/data/mariadb
 
 # default target
 all: up
 
-# start the biulding process
+# start the building process
 # create the wordpress and mariadb data directories.
 # start the containers in the background and leaves them running
 
 
 up: build
-	@sudo mkdir -p $(WP_DATA)
-	@sudo mkdir -p $(DB_DATA)
+	@mkdir -p $(WP_DATA)
+	@mkdir -p $(DB_DATA)
 	docker-compose -f ./srcs/docker-compose.yml up -d
 
 # build the containers
