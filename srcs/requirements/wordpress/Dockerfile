@@ -16,7 +16,6 @@ RUN apt-get install -y \
                 mariadb-client \
                 netcat
 
-#COPY ./tools/www.conf /etc/php/7.4/fpm/pool.d
 # copy the wordpress configuration script to the root directory in the container
 COPY ./conf/wp_conf.sh /
 

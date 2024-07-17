@@ -37,6 +37,9 @@ kill:
 wp:
 	docker exec -it wordpress bash
 
+mariadb:
+	docker exec -it wordpress bash
+
 logs:
 	docker-compose -f srcs/docker-compose.yml logs
 # clean the containers
@@ -46,11 +49,6 @@ logs:
 # the (|| true) is used to ignore the error if there are no containers running to prevent the make command from stopping.
 
 clean:
-#	docker system prune -a
-#	@docker volume rm $$(docker volume ls -q) || true
-#	docker-compose -f ./srcs/docker-compose.yml down -v --rmi all --remove-orphans
-#	@sudo rm -rf $(WP_DATA) || true
-#	@sudo rm -rf $(DB_DATA) || true
 	@docker stop $$(docker ps -qa) || true
 	@docker rm $$(docker ps -qa) || true
 	@docker rmi -f $$(docker images -qa) || true

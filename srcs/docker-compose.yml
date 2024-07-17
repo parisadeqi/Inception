@@ -28,7 +28,6 @@ networks:
 services:
 #mariadb
   mariadb:
-#    image: mariadb:psadeghi
     container_name: mariadb
     build: ./requirements/mariadb
     volumes:
@@ -40,7 +39,6 @@ services:
     restart: always
 #nginx
   nginx:
-#    image: nginx
     container_name: nginx
     build: ./requirements/nginx
     ports:
@@ -54,7 +52,6 @@ services:
     restart: always
 #wordpress
   wordpress:
-#    image: wordpress
     container_name: wordpress
     build: ./requirements/wordpress
     expose:

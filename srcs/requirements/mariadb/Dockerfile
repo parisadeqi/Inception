@@ -10,11 +10,11 @@ RUN apt-get update && apt-get upgrade -y
 # # install the required packages
 RUN apt-get install -y mariadb-server nano
 
-COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 RUN chmod 644 /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # copy file from host to container
-COPY ./conf/mdb_conf.sh /mdb_conf.sh
+COPY ./tools/mdb_conf.sh /mdb_conf.sh
 
 # set permissions to the file
 RUN chmod +x /mdb_conf.sh
